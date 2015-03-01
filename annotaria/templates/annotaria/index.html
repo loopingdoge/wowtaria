@@ -1,0 +1,309 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Wowtaria - wow</title>
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'annotaria/images/suchsuchwow.ico' %}" />
+  <!-- <link href="{% static 'annotaria/css/bootstrap.min.css' %} rel="stylesheet"> -->
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'annotaria/css/datepicker.css' %}" rel="stylesheet" type="text/css">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css" rel="stylesheet">
+  <link href="{% static 'annotaria/css/default.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'annotaria/css/style.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'annotaria/css/tabdrop.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'annotaria/css/flag-icon.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'annotaria/css/perfect-scrollbar.min.css' %}" rel="stylesheet" type="text/css">
+  
+  
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body class="mode-reader" data-language="gb">
+    <div id="lol">
+      <img src="{% static 'annotaria/images/dogehead-old.png' %}" width="60px" height="60px">
+    </div>
+    <div id="right-click" class="dropdown open">
+      <ul id="right-click-list" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" >
+      </ul>
+    </div>
+    <div class="modal fade" id="modal-about">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="modal-title">
+              <div style="text-align:center">
+                <img src="{% static 'annotaria/images/naughtydoge.png' %}" style="height: 40px">
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div id="doge-team">
+              <div class="doge-team-member" style="background-image: url(https://fedgeno.com/doge-lion.jpg); background-size: 536px; background-position-y: -170px;">
+                <div class="doge-team-img">
+                  <img src="{% static 'annotaria/images/albi2.png' %}">
+                </div>
+                <div class="doge-team-name">
+                  <p>Alberto "Bicipite" Nicoletti</p>
+                </div>
+              </div>
+              <div class="doge-team-member" style="background-image: url(http://fanaru.com/doge/image/18361-doge-follow-your-dreams.jpg);
+                background-size: 538px; background-position-x: 0px;background-position-y: -31px;">
+                <div class="doge-team-img">
+                  <img src="{% static 'annotaria/images/dev.png' %}">
+                </div>
+                <div class="doge-team-name">
+                  <p>Devid "Silver III" Farinelli</p>
+                </div>
+              </div>
+              <div class="doge-team-member" style="background-image: url(http://fc01.deviantart.net/fs71/f/2013/364/6/4/such_fancy_doge_by_hammn-d7020n4.jpg);
+                                                  background-repeat: no-repeat; background-size: 570px; background-position-y: -157px; background-position-x: 0px;">
+                <div class="doge-team-img">
+                  <img src="{% static 'annotaria/images/erik.png' %}">
+                </div>
+                <div class="doge-team-name">
+                  <p>Erik "#pajaccio" Minarini</p>
+                </div>
+              </div>
+              <!--
+              <p>Ringraziamo per suoi consigli pr0:</p>
+              <p>- Emanuele "non capisci un cazzo" Bencivenni</p>
+              <p>- Nicola "Ush che culo" Carlotti</p>
+              <p><img src="https://choicefinancialgroup.com/wp-content/uploads/2014/02/doge-right-no-circle1.png"></p>-->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" data-translation="hailthedoge">Hail the Doge</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="doc-ao-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body table-responsive">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" data-translation="cancel">Cancel</button>
+            <button type="button" class="btn btn-primary modal-submit" data-translation="submit">Submit</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <div class="modal fade" id="modal-annotation">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Annotation Details</h4>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" data-translation="hailthedoge">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <header class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid row">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header col-md-2 col-sm-2 col-xs-3"> <!--col1 -->
+          <img id="logo"  src="{% static 'annotaria/images/suchsuchwow.png' %}"></img>
+          <a class="navbar-brand" href="/annotaria/" >Wowtaria</a>
+        </div>
+        <div class="col-md-8 col-sm-7 col-xs-9"> <!--col2 -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+         </button>
+         <div id="header-titolo" ></div>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="col-md-2 col-sm-3 col-xs-12"><!--col3 -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+              <li class="annotator-only dropdown">
+                <a href="#" id="add-annotation" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="menuIcon"><i class="glyphicon glyphicon-edit"></i></span> 
+                  <span class="menuLabel">Add Annotation</span>
+                </a>
+                <ul id="add-annotation-dropdown" class="dropdown-menu">
+
+                </ul>
+              </li>
+
+              <li data-toggle="modal" data-target="#doc-ao-modal" data-type="login">
+                <a href="#" id="switch-mode">
+                  <span class="menuIcon"><i class="fa fa-book"></i></span>
+                  <span id="switch-mode-text" class="menuLabel" >Annotator</span>
+                  <!--<span id="switch-mode-text"> Reader</span>-->
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="fa  fa-ellipsis-v fa-lg menuIcon"></span>
+                  <span class="menuLabel" data-translation="about">Info</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" data-toggle="modal" data-target="#modal-about">Such Che Team</a></li>
+                  <li><a id="dogefy" href="#" data-translation="unchainthedoge">Unchain the doge</a></li>
+                  <li class="divider"></li>
+                  <li><a href="http://knowyourmeme.com/memes/doge" target="_blank">Very Info About Doge</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </header>
+    <div id="container">
+
+      <div id="titolo">
+        <div class="container">
+          <div id="doc-title">
+          </div>
+        </div>
+      </div>
+
+      <div class="up">
+        <a class="up" href="#body"><img  src="{% static 'annotaria/images/up.png' %}"></a>
+      </div>
+      <!-- /cont -->
+      <!-- Begin Body -->
+      <div id="content" class="container">
+        <div class="row principale">
+          <!-- annotarea--> 
+          <div  id="leftCol" class="col-md-4 col-sm-12">
+            <div id="annotarea" data-spy="affix" data-offset-top="120">
+              <div class="panel panel-info">
+                <div id="annotarea-heading" class="panel-heading">
+                  <div id="backli" class="my-clickable">
+                    <span id="annotarea-back" class="glyphicon glyphicon-chevron-left"></span>
+                  </div>
+                  <p id="annotarea-title" class="panel-title"> Annotarea / <span data-translation="docao">Document Annotations<span></p>
+                  <div id="filterli" class="my-clickable pull-right">
+                    <span id="annotarea-filter" class="glyphicon glyphicon-tags"></span>
+                  </div>
+                </div>
+                <div id="annotarea-body" class="panel-body">
+                  <ul class="nav nav-stacked" id="sidebar">
+                  </ul> <!-- nav-stacked -->
+                  <div id="annotations-detail">
+                  </div>
+                </div> <!-- panel-body -->
+              </div> <!-- panel-info -->
+            </div> <!-- annotarea -->
+          </div> <!-- col-md-4 leftcol -->
+        <!-- main col--> 
+          <div id="rightCol" class="col-md-8 col-sm-12">
+              <!--  ********************************************************************* -->
+            <ul id="myTab" class="nav nav-tabs">
+              <li id="extrali" class="dropdown pull-right tabdrop">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#extrali">
+                  <i class="fa fa-align-justify"></i> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                </ul>
+              </li>
+              
+              <li id="openli" class="active">
+                <a href="#open" data-toggle="tab">
+                  <p data-translation="open">Open a new document...</p><span class="glyphicon glyphicon-folder-open"></span>
+                </a>
+              </li>
+            </ul>
+            <div id="document">
+              <div class="tab-content" id="tab-content-document">
+                <div id="open" class="tab-pane fade in active">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <img class="search-logo"  src="{% static 'annotaria/images/suchsuchwow.png' %}" </img>
+                        <h2>SuchSuchWow</h2>
+                    </div>
+                    <div id="suchsuchwow" class="input-group col-md-12">
+                      <input type="text" class="form-control" data-translation="suchsuchwow" placeholder="Search typing a file name or his title..."> 
+                      <span class="input-group-btn">
+                        <button class="btn btn-default pull" type="button"><span class="glyphicon glyphicon-search " aria-hidden="true"></span></button>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div id="documents-column1" class="list-group col-md-12">
+                    </div>
+                  </div>
+                </div>   
+            </div>
+          </div>
+        </div> <!-- fine row principale -->
+      </div> <!-- fine content-->
+    </div> <!-- fine container -->
+    
+    <div id="loading">
+      <img class="loadingDoge" src="{% static 'annotaria/images/loadingdoge.png' %}"></img>
+    </div>
+    
+    <div id="footer">
+      <div id="row-footer" class="row">
+        <div class="col-md-2 col-sm-2 col-xs-2">
+          <div id="language" class="btn-group dropup pull-left">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <span class=" flag-icon flag-icon-gb" data-language="gb"></span>
+            </button>
+            <ul class="dropdown-menu row" role="menu">
+              <li class="col-md-3"><span class="flag-icon flag-icon-it" data-language="it"></span></li>
+              <li class="col-md-3"><span class=" flag-icon flag-icon-fr" data-language="fr"></span></li>
+              <li class="col-md-3"><span class=" flag-icon flag-icon-es" data-language="es"></span></li>
+              <li class="col-md-3"><span class=" flag-icon flag-icon-de" data-language="de"></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+          <img id="logo-footer" src="{% static 'annotaria/images/naughtydoge.png' %}" />
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
+        </div>
+      </div> 
+    </div>
+    <div class="darken">
+    </div>
+    <div id="filterPopup"></div>
+    <div class="device-xs visible-xs"></div>
+    <div class="device-sm visible-sm"></div>
+    <div class="device-md visible-md"></div>
+    <div class="device-lg visible-lg"></div>
+    
+    <!-- <script src="{% static 'annotaria/js/bootstrap.js' %}"></script> -->
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="{% static 'annotaria/js/jQueryRotateCompressed.js' %}"></script>
+    <script src="{% static 'annotaria/js/rotating-doge.js' %}"></script>
+    <script src="{% static 'annotaria/js/annotaria.js' %}"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"> </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/i18n/defaults-eu.min.js"></script>
+    <script src="{% static 'annotaria/js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'annotaria/js/bootstrap-tabdrop.js' %}"></script>
+    <script src="{% static 'annotaria/js/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'annotaria/js/widgets.js' %}"></script>
+    
+  </body>
+</html>

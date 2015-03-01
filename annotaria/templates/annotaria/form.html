@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>
+			var csrftoken = getCookie("csrftoken");
+			function getCookie(name) {
+			    var cookieValue = null;
+			    if (document.cookie && document.cookie != '') {
+			        var cookies = document.cookie.split(';');
+			        for (var i = 0; i < cookies.length; i++) {
+			            var cookie = jQuery.trim(cookies[i]);
+			            // Does this cookie string begin with the name we want?
+			            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+			                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+			                break;
+			            }
+			        }
+			    }
+			    return cookieValue;
+			}
+			function csrfSafeMethod(method) {
+			    // these HTTP methods do not require CSRF protection
+			    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+			}
+			
+			function go(){
+				var cose = new Object();
+				/*
+				cose['annotatedBy'] = "aop:alberto-nicoletti";
+				cose['annotatedAt'] = "2014-07-07T17:07";
+				cose['type'] = "hasPublisher";
+				cose['subject'] = "BMC_Bioinformatics_2008_Oct_2_9_407_ver1.html";
+				cose['object'] = "<http://www.feltrinellieditore.it/>";
+				cose['label'] = "Feltrinelli";
+				*/
+				
+				cose['annotatedBy'] = "aop:alberto-nicoletti";
+				cose['annotatedAt'] = "2014-07-07T17:07";
+				cose['type'] = "hasFormattingScore";
+				cose['subject'] = "BMC_Bioinformatics_2008_Oct_2_9_407_ver1.html";
+				cose['object'] = "\"good\"";
+				cose['label'] = "good";
+				cose['isFragment'] = true;
+				cose['value'] = "k825j2078" ;
+				cose['start'] = "0";
+				cose['end'] = "10";
+				
+				$.ajax({
+					url: "/annotaria/insert/",
+					type: "POST",
+					data: cose,
+					success: function(data){
+						$("#output").text(data);
+					},
+					error: function(request, state){
+						alert("Errore gnocco");
+					}
+				});
+			}
+			$(document).ready(function(){
+				$.ajaxSetup({
+			    beforeSend: function(xhr, settings) {
+			        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+			            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			        }
+			    }
+			});
+				$("#cacca").click(go);
+			});
+		</script>
+	</head>
+	<body>
+		{% csrf_token %}
+		<form method="post" action="/annotaria/insert/">
+		    Annotated By: <input type="text" name="annotatedBy"></input><br>
+		    <input type="submit" value="Save Page"/></input>
+		</form>
+		<p>Output:</p>
+		<button id="cacca">Send AJAX request</button>
+		<div id="output"></div>
+	</body>
+</html>
